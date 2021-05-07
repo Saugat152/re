@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Store - Low Prices in Books & more{% endblock %}
+{% block content %}
+
+<section class="py-0 text-center container">
+  <div class="row py-lg-0">
+    <div class="col-lg-6 col-md-8 mx-auto bg-white">
+      <h1 class="h1 fw-bold">eBook Store</h1>
+      <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator,
+        etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+          </div>
+  </div>
+</section>
+  <div class="container">
+    <div class="row">
+      <div class="album py-0">
+        <div class="pb-3">
+          <h1 class="h3">All Books</h1>
+        </div>
+        {% if not products %}
+        <div class="col-12">There are currently no products active</div>
+          {% else %}
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+          {% for product in products %}
+          <div class="col">
+            <div class="card border-0">
+              <img class="img-fluid" alt="Responsive image" src="{{ product.image.url }}">
+              <div class="card-body px-0">
+                <p class="card-text">
+                  <a class="text-dark text-decoration-none"
+                    href="{{ product.get_absolute_url }}">{{ product.title|slice:":50" }}...</a>
+                </p>
+                <div class="fw-bold">{{product.category}}</div>
+                <div class="fw-bold">RS.{{product.price}}</div>
+                
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
